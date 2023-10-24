@@ -1,33 +1,78 @@
-Question1Screen
+<LoginManager>:
+    LoginScreen:
+        name: 'login'
+    LandingPage:
+        name: 'landing'
+    RegisterScreen:
+        name: 'register'
 
-<Question1Screen>:
-    BoxLayout:
-        orientation: "vertical"
-        Label:
-            text: "Your question here?"
-        BoxLayout:
-            Button:
-                text: "Option A"
-            Button:
-                text: "Option B"
-            Button:
-                text: "Option C"
 
-<CorrectScreen>:
+<LoginScreen>:
     BoxLayout:
-        orientation: "vertical"
+        orientation: 'vertical'
         Label:
-            text: "Correct!"
+            id: userinput
+            text: ''
         BoxLayout:
-            Button:
-                text: "Next"
+            orientation: 'horizontal'
+            Label:
+                text: 'username'
+            TextInput:
+                id: user
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'password'
+            TextInput:
+                id: password
+        Button:
+            text: 'Login'
+            on_release: root.login(user.text, password.text)
+        Button:
+            text: 'Register a New Account'
+            on_release: root.register()
 
-<CorrectScreen>:
+
+
+<LandingPage>:
     BoxLayout:
-        orientation: "vertical"
+        orientation: 'vertical'
         Label:
-            text: "Wrong!"
+            text: 'Successfully Logged In!'
+        Button:
+            text: 'log out'
+            on_release: root.logout()
+
+
+<RegisterScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: problem
+            text: ''
+            color: 'red'
         BoxLayout:
-            Button:
-                text: "Next"
+            orientation: 'horizontal'
+            Label:
+                text: 'New Username'
+            TextInput:
+                id: newuser
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'New Password'
+            TextInput:
+                id: newpassword1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Confirm New Password'
+            TextInput:
+                id: newpassword2
+        Button:
+            text: 'Register'
+            on_release: root.register(newuser.text,newpassword1.text,newpassword2.text)
+        Button:
+            text: 'Back to Login'
+            on_release: root.gologin()
 

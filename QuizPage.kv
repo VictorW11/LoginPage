@@ -1,0 +1,81 @@
+<QuizManager>:
+    Question1Screen:
+        name: "question1"
+    CorrectScreen:
+        name: "correct"
+    ErrorScreen:
+        name: "error"
+    Question2Screen:
+        name: "question2"
+
+<Question1Screen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Who won the superbowl in 2010?"
+        BoxLayout:
+            Button:
+                padding: 20
+                text: "New Orleans Saints"
+                background_normal: "saints.jpg"
+                on_release: root.answer_question(True)
+            Button:
+                padding: 20
+                text: "Option B"
+                on_release: root.answer_question(False)
+            Button:
+                padding: 20
+                text: "Option C"
+                on_release: root.answer_question(False)
+
+<Question2Screen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            pos: self.pos
+            id: invalid_guess
+            text: "question 2 goes here"
+            size_hint: 1,7
+        TextInput:
+            id:heart
+            hint_text: "Enter remaining verse"
+        Button:
+            text: "Press Enter"
+            on_release: root.answer_question(heart.text)
+
+
+<CorrectScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Correct!"
+            size_hint: 1,2
+            background_color: (.1,.8,.1,1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            Button:
+                text: "Next"
+                on_release: root.next_question()
+
+<ErrorScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Wrong!"
+            size_hint: 1,2
+            background_color: (.8,.1,.1,1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            Button:
+                text: "Next"
+
